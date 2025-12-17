@@ -343,3 +343,129 @@ a {
     padding: 0 var(--spacing-sm);
   }
 }
+
+/* About Us Page Styles */
+.about-hero {
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.about-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.team-section {
+  padding: var(--spacing-lg) 0 var(--spacing-xl);
+  background-color: var(--surface-color);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.team-card {
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* About Content Refactoring */
+.about-text-block p {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.8;
+}
+
+.about-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+  color: var(--text-dark);
+}
+
+.about-quote {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  background: rgba(46, 125, 50, 0.05);
+  /* Subtle highlight */
+  padding: 1.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.team-link {
+  display: inline-block;
+  margin-top: var(--spacing-xs);
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.team-link:hover {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-light);
+}
+
+
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.team-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.team-info {
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.team-info h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.role {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.responsibility {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  line-height: 1.5;
+}
