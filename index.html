@@ -21,6 +21,7 @@
             <div class="logo">WAIS.</div>
             <nav style="display: flex; gap: 1rem; align-items: center;">
                 <a href="about-us.html" style="font-weight: 500;">About Us</a>
+                <a href="#faq" style="font-weight: 500;">FAQ</a>
                 <a href="#features" class="btn btn-secondary">Features</a>
             </nav>
         </div>
@@ -31,10 +32,13 @@
             <div class="hero-text">
                 <h1>Think in colors,<br>think beyond yourself.</h1>
                 <p>Shift perspectives, simplify your discussions, and spark better ideas.</p>
-                <!-- <div class="hero-buttons">
-                    <a href="https://testflight.apple.com/join/fPEnZzsp" class="btn btn-primary"
-                        target="_blank">Download Beta</a>
-                </div> -->
+                <div class="hero-subscription">
+                    <p class="subscription-label">Get notified when we launch updates</p>
+                    <form class="subscription-form">
+                        <input type="email" placeholder="Enter your email" required class="subscription-input">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
             </div>
             <div class="hero-image">
                 <img src="assets/WAIS-hero.png" alt="WAIS mind app interface" class="hero-img-asset">
@@ -87,6 +91,91 @@
         </div>
     </section>
 
+    <section id="roles" class="accordion-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Roles that WAIS Supports Best</h2>
+                <p>Designed for everyone who wants to think better together.</p>
+            </div>
+
+            <div class="accordion-grid">
+                <details class="accordion-item">
+                    <summary>🎯 The Facilitator</summary>
+                    <div class="accordion-content">
+                        <p>For project leads, PMs, mentors, teachers—or anyone who feels responsible for keeping
+                            discussions fair, safe, and productive.</p>
+                        <p>WAIS helps facilitators guide conversations without dominating them, while ensuring every
+                            voice has space.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary>🌱 The Thoughtful Contributor</summary>
+                    <div class="accordion-content">
+                        <p>For designers, developers, students, introverts, and deep thinkers.</p>
+                        <p>WAIS creates a safe space to share ideas—especially for those who need time, structure, or
+                            psychological safety to speak up.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary>🏡 Communities & Families</summary>
+                    <div class="accordion-content">
+                        <p>WAIS is not limited to professional settings.</p>
+                        <p>It can also support group discussions within communities or families, helping people navigate
+                            conversations with empathy, structure, and clarity.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="accordion-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about WAIS.</p>
+            </div>
+
+            <div class="accordion-grid">
+                <details class="accordion-item">
+                    <summary>How does WAIS help reduce bias, ego, and hierarchy within teams?</summary>
+                    <div class="accordion-content">
+                        <p>WAIS guides participants through structured phases that encourage perspective-shifting and
+                            balanced participation. All responses are anonymous, allowing ideas to be expressed freely
+                            without pressure from hierarchy or dominant voices.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary>Who is WAIS for?</summary>
+                    <div class="accordion-content">
+                        <p>WAIS is for teams who collaborate to turn ideas into meaningful products. It can be used by
+                            students, designers, developers, and teams working in collaborative environments.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary>Can WAIS replace our usual discussion or brainstorming sessions?</summary>
+                    <div class="accordion-content">
+                        <p>Not at all. WAIS is not meant to replace actual brainstorming sessions, it works best
+                            alongside your existing sessions. WAIS complements your discussions by adding structure when
+                            teams need clarity, alignment, or guidance.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item">
+                    <summary>Is WAIS suitable for non-technical teams?</summary>
+                    <div class="accordion-content">
+                        <p>Yes. WAIS can be used by any team—creative, business, academic, or technical—who needs a
+                            better way to explore and develop ideas. It can also be used for group or family
+                            discussions.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -100,6 +189,78 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const details = document.querySelectorAll('.accordion-item');
+
+            details.forEach((targetDetail) => {
+                const summary = targetDetail.querySelector('summary');
+
+                summary.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const content = targetDetail.querySelector('.accordion-content');
+
+                    // If closing
+                    if (targetDetail.hasAttribute('open')) {
+                        // Set start height explicitly
+                        const startHeight = content.offsetHeight;
+                        content.style.height = `${startHeight}px`;
+                        content.style.opacity = '1';
+
+                        // Wait for next frame to ensure start state is applied
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                content.style.height = '0px';
+                                content.style.opacity = '0';
+                                content.style.paddingTop = '0';
+                                content.style.paddingBottom = '0';
+                            });
+                        });
+
+                        content.addEventListener('transitionend', function onEnd() {
+                            targetDetail.removeAttribute('open');
+                            content.style.height = '';
+                            content.style.opacity = '';
+                            content.style.paddingTop = '';
+                            content.style.paddingBottom = '';
+                            content.removeEventListener('transitionend', onEnd);
+                        }, { once: true });
+                    }
+                    // If opening
+                    else {
+                        targetDetail.setAttribute('open', '');
+
+                        // Get destination height (needs to be calculated with padding)
+                        content.style.height = 'auto'; // ensure we get full height
+                        const destHeight = content.scrollHeight;
+
+                        // Set start state
+                        content.style.height = '0px';
+                        content.style.opacity = '0';
+                        content.style.paddingTop = '0';
+                        content.style.paddingBottom = '0';
+
+                        // Force reflow/wait for next frame
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                content.style.height = `${destHeight}px`;
+                                content.style.opacity = '1';
+                                content.style.paddingTop = ''; // Reverts to CSS value
+                                content.style.paddingBottom = ''; // Reverts to CSS value
+                            });
+                        });
+
+                        content.addEventListener('transitionend', function onEnd() {
+                            content.style.height = ''; // Clean up to allow auto resizing if window changes
+                            content.style.opacity = '';
+                            content.removeEventListener('transitionend', onEnd);
+                        }, { once: true });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
