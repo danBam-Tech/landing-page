@@ -34,10 +34,21 @@
                 <p>Shift perspectives, simplify your discussions, and spark better ideas.</p>
                 <div class="hero-subscription">
                     <p class="subscription-label">Receive product updates and announcements.</p>
-                    <form class="subscription-form">
-                        <input type="email" placeholder="Enter your email" required class="subscription-input">
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <form class="subscription-form" id="subscription-form">
+                        <input type="email" placeholder="Enter your email" required class="subscription-input" id="subscriber-email">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <span id="subscribe-text">Subscribe</span>
+                            <span id="subscribe-spinner" hidden>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c4.97 0 9 4.03 9 9">
+                                        <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/>
+                                    </path>
+                                </svg>
+                            </span>
+                        </button>
                     </form>
+                    <p class="subscription-success" hidden>Subscribed. Can't wait to be WAIS with you!</p>
+                    <p class="subscription-failed" hidden>Subscription failed. Check your email.</p>
                 </div>
             </div>
             <div class="hero-image">
@@ -189,78 +200,7 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const details = document.querySelectorAll('.accordion-item');
-
-            details.forEach((targetDetail) => {
-                const summary = targetDetail.querySelector('summary');
-
-                summary.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    const content = targetDetail.querySelector('.accordion-content');
-
-                    // If closing
-                    if (targetDetail.hasAttribute('open')) {
-                        // Set start height explicitly
-                        const startHeight = content.offsetHeight;
-                        content.style.height = `${startHeight}px`;
-                        content.style.opacity = '1';
-
-                        // Wait for next frame to ensure start state is applied
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                content.style.height = '0px';
-                                content.style.opacity = '0';
-                                content.style.paddingTop = '0';
-                                content.style.paddingBottom = '0';
-                            });
-                        });
-
-                        content.addEventListener('transitionend', function onEnd() {
-                            targetDetail.removeAttribute('open');
-                            content.style.height = '';
-                            content.style.opacity = '';
-                            content.style.paddingTop = '';
-                            content.style.paddingBottom = '';
-                            content.removeEventListener('transitionend', onEnd);
-                        }, { once: true });
-                    }
-                    // If opening
-                    else {
-                        targetDetail.setAttribute('open', '');
-
-                        // Get destination height (needs to be calculated with padding)
-                        content.style.height = 'auto'; // ensure we get full height
-                        const destHeight = content.scrollHeight;
-
-                        // Set start state
-                        content.style.height = '0px';
-                        content.style.opacity = '0';
-                        content.style.paddingTop = '0';
-                        content.style.paddingBottom = '0';
-
-                        // Force reflow/wait for next frame
-                        requestAnimationFrame(() => {
-                            requestAnimationFrame(() => {
-                                content.style.height = `${destHeight}px`;
-                                content.style.opacity = '1';
-                                content.style.paddingTop = ''; // Reverts to CSS value
-                                content.style.paddingBottom = ''; // Reverts to CSS value
-                            });
-                        });
-
-                        content.addEventListener('transitionend', function onEnd() {
-                            content.style.height = ''; // Clean up to allow auto resizing if window changes
-                            content.style.opacity = '';
-                            content.removeEventListener('transitionend', onEnd);
-                        }, { once: true });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -12,10 +12,11 @@
   --text-dark: #1a1a1a;
   --text-medium: #4a4a4a;
   --text-light: #7a7a7a;
-  --brand-blue: #0849A5;
+  --text-warning: #f84b33;
+  --brand-blue: #0849a5;
 
   /* Typography */
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-main: "Inter", system-ui, -apple-system, sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -84,6 +85,17 @@ a {
   color: white;
 }
 
+.btn-primary:disabled {
+  background-color: #414141;
+}
+
+.btn-primary:disabled:hover {
+  background-color: #414141;
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+}
+
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -131,7 +143,7 @@ a {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: #0849A5;
+  background-color: #0849a5;
 }
 
 .hero-content {
@@ -437,8 +449,6 @@ a {
   color: var(--primary-light);
 }
 
-
-
 .team-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
@@ -482,7 +492,7 @@ a {
 .hero-subscription {
   margin-top: var(--spacing-lg);
   max-width: 500px;
-  background-color: #E6EBF2;
+  background-color: #e6ebf2;
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
@@ -493,6 +503,18 @@ a {
   font-weight: 500;
   color: var(--text-dark);
   margin-bottom: var(--spacing-xs);
+}
+
+.hero-subscription .subscription-success {
+  font-size: 0.8rem;
+  color: var(--brand-blue);
+  margin: var(--spacing-xs) 0;
+}
+
+.hero-subscription .subscription-failed {
+  font-size: 0.8rem;
+  color: var(--text-warning);
+  margin: var(--spacing-xs) 0;
 }
 
 .subscription-form {
@@ -527,7 +549,7 @@ a {
 /* Accordion / FAQ Section */
 .accordion-section {
   padding: var(--spacing-xl) 0;
-  background-color: #0849A5;
+  background-color: #0849a5;
 }
 
 .accordion-section .section-header h2,
